@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Sotsera.Blazor.Server\Sotsera.Blazor.Server.csproj" />
+  </ItemGroup>
+
+</Project>

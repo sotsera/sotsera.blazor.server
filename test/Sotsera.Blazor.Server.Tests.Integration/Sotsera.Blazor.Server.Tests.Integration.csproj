@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\samples\BlazorWebAppAutoGlobal\BlazorWebAppAutoGlobal\BlazorWebAppAutoGlobal.csproj" />
+  </ItemGroup>
+
+</Project>
