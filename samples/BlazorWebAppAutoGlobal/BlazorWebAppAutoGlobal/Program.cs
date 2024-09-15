@@ -1,10 +1,14 @@
 using System.Net.Mime;
 using System.Text;
-using BlazorWebAppAutoGlobal.Client.Pages;
+using BlazorWebAppAutoGlobal;
 using BlazorWebAppAutoGlobal.Components;
-using Microsoft.AspNetCore.Mvc;
+using Sotsera.Blazor.Server;
+using Sotsera.Blazor.Server.SecurityHeaders.Policies;
+using Sotsera.Blazor.Server.SecurityHeaders.Policies.DefaultPolicies;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSecurityHeaders(true);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
@@ -27,20 +31,33 @@ else
 
 app.UseHttpsRedirection();
 
-
 app.UseAntiforgery();
 
 app.MapStaticAssets();
 
-app.MapGet("/api/text", () => "Ciao!");
-app.MapGet("/api/json", () => new { Message = "Ciao!" });
-app.MapGet("/api/html", () => Results.Content("<html><body><h1>Ciao!</h1></body></html>", MediaTypeNames.Text.Html, Encoding.UTF8));
+app.MapGroup("api")
+    .Map(group =>
+    {
+        group.MapGet("/text", () => "Ciao!");
+        group.MapGet("/json", () => TypedResults.Ok(new { Message = "Ciao!" }));
+        group.MapGet("/html", () =>
+        {
+            const string content = "<html><body><h1>Ciao!</h1></body></html>";
+            return TypedResults.Content(content, MediaTypeNames.Text.Html, Encoding.UTF8);
+        });
+    })
+    .RequireSecurityHeaders(new DefaultApiSecurityHeadersPolicy());
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
-    .AddAdditionalAssemblies(typeof(BlazorWebAppAutoGlobal.Client._Imports).Assembly);
+    .AddAdditionalAssemblies(typeof(BlazorWebAppAutoGlobal.Client._Imports).Assembly)
+    .RequireSecurityHeaders(new DefaultBlazorSecurityHeadersPolicy());
+
+
+app.UseSecurityHeaders(new DefaultSecurityHeadersPolicy());
 
 app.Run();
 
+// ReSharper disable once ClassNeverInstantiated.Global
 public partial class Program { }
