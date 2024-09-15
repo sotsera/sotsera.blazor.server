@@ -20,4 +20,14 @@ public static class EndpointConventionBuilderExtensions
 
         return builder;
     }
+
+    public static TBuilder DisableSecurityHeaders<TBuilder>(this TBuilder builder)
+        where TBuilder : IEndpointConventionBuilder
+    {
+        builder.ThrowIfNull();
+
+        builder.WithMetadata(new DisableSecurityHeaders());
+
+        return builder;
+    }
 }

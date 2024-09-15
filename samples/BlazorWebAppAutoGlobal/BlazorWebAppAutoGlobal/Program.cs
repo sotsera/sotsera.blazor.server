@@ -3,7 +3,6 @@
 
 using System.Net.Mime;
 using System.Text;
-using BlazorWebAppAutoGlobal.Client.Pages;
 using BlazorWebAppAutoGlobal.Components;
 using Sotsera.Blazor.Server;
 using Sotsera.Blazor.Server.SecurityHeaders.Policies.DefaultPolicies;
@@ -51,15 +50,18 @@ app.MapRazorComponents<App>()
 app.Run();
 
 // ReSharper disable once ClassNeverInstantiated.Global
-public partial class Program { }
+public partial class Program;
 
-public static class TestApi
+internal static class TestApi
 {
     public static RouteGroupBuilder AddTestApi(this RouteGroupBuilder builder)
     {
         builder.MapGet("/text", () => "Ciao!");
 
         builder.MapGet("/json", () => TypedResults.Ok(new { Message = "Ciao!" }));
+
+        builder.MapGet("/json-no-headers", () => TypedResults.Ok(new { Message = "Ciao!" }))
+            .DisableSecurityHeaders();
 
         builder.MapGet("/html", () =>
         {
