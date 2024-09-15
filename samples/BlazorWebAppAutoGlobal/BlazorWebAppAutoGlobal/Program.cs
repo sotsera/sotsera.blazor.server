@@ -5,8 +5,12 @@ using System.Net.Mime;
 using System.Text;
 using BlazorWebAppAutoGlobal.Client.Pages;
 using BlazorWebAppAutoGlobal.Components;
+using Sotsera.Blazor.Server;
+using Sotsera.Blazor.Server.SecurityHeaders.Policies.DefaultPolicies;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSecurityHeaders(true);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
@@ -30,15 +34,19 @@ else
 app.UseHttpsRedirection();
 app.UseAntiforgery();
 
+app.UseSecurityHeaders(new DefaultSecurityHeadersPolicy());
+
 app.MapStaticAssets();
 
 app.MapGroup("api")
-    .AddTestApi();
+    .AddTestApi()
+    .RequireSecurityHeaders(new DefaultApiSecurityHeadersPolicy());
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
-    .AddAdditionalAssemblies(typeof(BlazorWebAppAutoGlobal.Client._Imports).Assembly);
+    .AddAdditionalAssemblies(typeof(BlazorWebAppAutoGlobal.Client._Imports).Assembly)
+    .RequireSecurityHeaders(new DefaultBlazorSecurityHeadersPolicy());
 
 app.Run();
 

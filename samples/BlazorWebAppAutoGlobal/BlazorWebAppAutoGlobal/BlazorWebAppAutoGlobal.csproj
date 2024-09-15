@@ -5,6 +5,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Sotsera.Blazor.Server\Sotsera.Blazor.Server.csproj" />
     <ProjectReference Include="..\BlazorWebAppAutoGlobal.Client\BlazorWebAppAutoGlobal.Client.csproj" />
   </ItemGroup>
 
