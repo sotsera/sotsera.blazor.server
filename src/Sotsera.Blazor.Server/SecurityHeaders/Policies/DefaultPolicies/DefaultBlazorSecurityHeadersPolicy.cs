@@ -43,11 +43,7 @@ public class DefaultBlazorSecurityHeadersPolicy : ISecurityHeadersPolicy
         headers.XContentTypeOptions = "nosniff";
         headers.XFrameOptions = "DENY";
         headers["Referrer-Policy"] = "no-referrer";
-
-        headers["Permissions-Policy"] = new PermissionsPolicy
-        {
-            Accelerometer = "()" // Disable accelerometer (example that shows a configuration using the default value
-        };
+        headers["Permissions-Policy"] = new PermissionsPolicy();
 
         headers.ContentSecurityPolicy = environment.IsDevelopment()
             ? $"{_baseCsp} 'sha256-{sha}' {DevelopmentScriptSrcSuffix}; {DevelopmentConnectSrc}"
