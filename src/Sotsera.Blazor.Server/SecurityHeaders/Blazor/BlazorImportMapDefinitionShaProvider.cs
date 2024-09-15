@@ -13,7 +13,7 @@ public interface IBlazorImportMapDefinitionShaProvider
     string? GetSha256(HttpContext context);
 }
 
-public class BlazorImportMapDefinitionShaProvider: IBlazorImportMapDefinitionShaProvider
+public class BlazorImportMapDefinitionShaProvider : IBlazorImportMapDefinitionShaProvider
 {
     private string? _lastMapDefinition;
     private string? _lastSha;
@@ -24,7 +24,7 @@ public class BlazorImportMapDefinitionShaProvider: IBlazorImportMapDefinitionSha
     {
         var importMapDefinition = context.GetEndpoint()?.Metadata.GetMetadata<ImportMapDefinition>()?.ToString();
 
-        if(importMapDefinition == null)
+        if (importMapDefinition == null)
         {
             return null;
         }

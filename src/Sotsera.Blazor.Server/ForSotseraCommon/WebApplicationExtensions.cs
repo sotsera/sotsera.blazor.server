@@ -1,9 +1,9 @@
 // Copyright (c) Alessandro Ghidini. All rights reserved.
 // SPDX-License-Identifier: MIT.
 
+using System.Globalization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
-using System.Globalization;
 using Sotsera.Sources.Common.Extensions;
 
 namespace Sotsera.Blazor.Server.ForSotseraCommon;
