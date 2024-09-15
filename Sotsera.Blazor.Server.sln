@@ -5,8 +5,8 @@ VisualStudioVersion = 17.12.35309.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".solution", ".solution", "{46ADDB25-FB7B-4499-9EC9-2A56494E8F30}"
 	ProjectSection(SolutionItems) = preProject
-		.gitignore = .gitignore
 		.editorconfig = .editorconfig
+		.gitignore = .gitignore
 		Directory.Build.props = Directory.Build.props
 		Directory.Packages.props = Directory.Packages.props
 		global.json = global.json
@@ -31,9 +31,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sotsera.Blazor.Server.Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sotsera.Blazor.Server.Tests.Integration", "test\Sotsera.Blazor.Server.Tests.Integration\Sotsera.Blazor.Server.Tests.Integration.csproj", "{96ED046A-F5FE-4815-B9C1-60E5FD1312A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWebAppAutoGlobal", "samples\BlazorWebAppAutoGlobal\BlazorWebAppAutoGlobal\BlazorWebAppAutoGlobal.csproj", "{6B786984-71A3-403E-9AD5-B088F95F5B6C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWebAppAutoGlobal", "samples\BlazorWebAppAutoGlobal\BlazorWebAppAutoGlobal\BlazorWebAppAutoGlobal.csproj", "{95C5D6CA-43A8-40E3-B75F-1F006540E3C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWebAppAutoGlobal.Client", "samples\BlazorWebAppAutoGlobal\BlazorWebAppAutoGlobal.Client\BlazorWebAppAutoGlobal.Client.csproj", "{3782793D-A9F4-4B39-A514-E4475F11D2E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWebAppAutoGlobal.Client", "samples\BlazorWebAppAutoGlobal\BlazorWebAppAutoGlobal.Client\BlazorWebAppAutoGlobal.Client.csproj", "{379DBD3D-6E85-431A-AE90-CCBC0FF3C9D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,14 +53,14 @@ Global
 		{96ED046A-F5FE-4815-B9C1-60E5FD1312A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96ED046A-F5FE-4815-B9C1-60E5FD1312A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96ED046A-F5FE-4815-B9C1-60E5FD1312A1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6B786984-71A3-403E-9AD5-B088F95F5B6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6B786984-71A3-403E-9AD5-B088F95F5B6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6B786984-71A3-403E-9AD5-B088F95F5B6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6B786984-71A3-403E-9AD5-B088F95F5B6C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3782793D-A9F4-4B39-A514-E4475F11D2E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3782793D-A9F4-4B39-A514-E4475F11D2E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3782793D-A9F4-4B39-A514-E4475F11D2E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3782793D-A9F4-4B39-A514-E4475F11D2E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95C5D6CA-43A8-40E3-B75F-1F006540E3C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95C5D6CA-43A8-40E3-B75F-1F006540E3C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95C5D6CA-43A8-40E3-B75F-1F006540E3C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95C5D6CA-43A8-40E3-B75F-1F006540E3C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{379DBD3D-6E85-431A-AE90-CCBC0FF3C9D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{379DBD3D-6E85-431A-AE90-CCBC0FF3C9D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{379DBD3D-6E85-431A-AE90-CCBC0FF3C9D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{379DBD3D-6E85-431A-AE90-CCBC0FF3C9D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,8 +69,8 @@ Global
 		{1629060A-6ACF-4A6B-9416-BB42EB818A6D} = {85E01895-4EAC-48D1-97B7-3E123A1E5851}
 		{4B7D60C4-7015-4269-8405-85DBC0A4EDD0} = {362DF270-913C-479C-AB47-672A011C07D0}
 		{96ED046A-F5FE-4815-B9C1-60E5FD1312A1} = {362DF270-913C-479C-AB47-672A011C07D0}
-		{6B786984-71A3-403E-9AD5-B088F95F5B6C} = {5D7CDE0D-985A-4B93-AEF1-E291E89D4B1D}
-		{3782793D-A9F4-4B39-A514-E4475F11D2E0} = {5D7CDE0D-985A-4B93-AEF1-E291E89D4B1D}
+		{95C5D6CA-43A8-40E3-B75F-1F006540E3C6} = {5D7CDE0D-985A-4B93-AEF1-E291E89D4B1D}
+		{379DBD3D-6E85-431A-AE90-CCBC0FF3C9D3} = {5D7CDE0D-985A-4B93-AEF1-E291E89D4B1D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {05F6357D-EBA0-477E-85D7-CF035F99EDDF}
