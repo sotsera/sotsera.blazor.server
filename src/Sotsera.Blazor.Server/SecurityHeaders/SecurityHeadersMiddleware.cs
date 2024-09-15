@@ -30,7 +30,7 @@ public class SecurityHeadersMiddleware(RequestDelegate next, ISecurityHeadersPol
         var policy = metadata is ISecurityHeadersPolicyMetadata policyMetadata
             ? policyMetadata.Policy
             : _policy;
-        
+
         context.Response.OnStarting(OnResponseStartingDelegate, (context, policy));
 
         return _next(context);
