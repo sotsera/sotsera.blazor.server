@@ -13,12 +13,20 @@ public interface IBlazorImportMapDefinitionShaProvider
     string? GetSha256(HttpContext context);
 }
 
+/// <summary>
+/// Provides a SHA-256 hash for the Blazor import map definition.
+/// </summary>
+/// <remarks>
+/// By the time the Blazor endpoint is executed, the import map definition is already established and should remain unchanged <br/>
+/// <br/>
+/// MapRazorComponents --> WithStaticAssets <br/>
+/// WithStaticAssets <br/>
+///     --> IEndpointConventionBuilder.OnBeforeCreateEndpoints += ResourceCollectionConvention.OnBeforeCreateEndpoints <br/>
+///     --> IEndpointConventionBuilder.Add(ResourceCollectionConvention.ApplyConvention) <br/>
+/// </remarks>
 public class BlazorImportMapDefinitionShaProvider : IBlazorImportMapDefinitionShaProvider
 {
-    private string? _lastMapDefinition;
-    private string? _lastSha;
-
-    private static readonly Lock _lock = new();
+    private string? _importMapDefinitionSha256;
 
     public string? GetSha256(HttpContext context)
     {
@@ -29,20 +37,16 @@ public class BlazorImportMapDefinitionShaProvider : IBlazorImportMapDefinitionSh
             return null;
         }
 
-        if (importMapDefinition == _lastMapDefinition)
+        if (_importMapDefinitionSha256 is not null)
         {
-            return _lastSha;
+            return _importMapDefinitionSha256;
         }
 
         var sha = CalculateSha256(importMapDefinition);
 
-        lock (_lock)
-        {
-            _lastMapDefinition = importMapDefinition;
-            _lastSha = sha;
-        }
+        _importMapDefinitionSha256 = sha;
 
-        return _lastSha;
+        return sha;
     }
 
     // ReSharper disable once MemberCanBeMadeStatic.Global

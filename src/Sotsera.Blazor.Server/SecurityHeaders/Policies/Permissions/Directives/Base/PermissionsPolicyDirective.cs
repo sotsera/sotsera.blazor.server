@@ -5,16 +5,16 @@ using Sotsera.Sources.Common.Extensions;
 
 namespace Sotsera.Blazor.Server.SecurityHeaders.Policies.Permissions.Directives.Base;
 
-public class PermissionsPolicyDirective(string name, string value = "()")
+public class PermissionsPolicyDirective(string name, string? value = null)
 {
-    private readonly string _value = value.ThrowIfEmpty();
+    private string? _value = value;
 
     public string Name { get; } = name.ThrowIfEmpty();
 
-    public string Value
+    public string? Value
     {
         get => _value;
-        protected init => _value = value.IsEmpty() ? "()" : value;
+        set => _value = value.IsEmpty() ? null : value;
     }
 }
 

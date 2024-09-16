@@ -1,4 +1,6 @@
 *.user
+*.pubxml
+profile.arm.json
 
 .vs/
 .restore/

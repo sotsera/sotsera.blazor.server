@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Sotsera.Sources.Common.Extensions;
 
-namespace Sotsera.Blazor.Server.ForSotseraCommon;
+namespace Sotsera.Blazor.Server.Localization;
 
 public static class WebApplicationExtensions
 {
