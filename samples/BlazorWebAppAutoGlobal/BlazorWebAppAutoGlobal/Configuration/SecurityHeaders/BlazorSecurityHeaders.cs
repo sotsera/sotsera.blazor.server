@@ -11,20 +11,15 @@ internal sealed class BlazorSecurityHeaders : DefaultHeadersPolicy
 {
     private string? _csp;
 
-    private string GetContentSecurityPolicy(HttpContext context, IWebHostEnvironment environment)
+    private static string GetContentSecurityPolicy(HttpContext context, IWebHostEnvironment environment)
     {
-        if (_csp != null)
-        {
-            return _csp;
-        }
-
         var sha = context.GetRequiredService<IBlazorImportMapDefinitionShaProvider>().GetSha256(context);
 
         var developmentConnectSrc = environment.IsDevelopment()
             ? "http://localhost:* ws://localhost:* wss://localhost:*"
             : "";
 
-        _csp = string.Join(';',
+        return string.Join(';',
             "default-src 'none'",
             $"connect-src 'self' {developmentConnectSrc}",
             $"script-src-elem 'self' 'sha256-{sha}'",
@@ -35,8 +30,6 @@ internal sealed class BlazorSecurityHeaders : DefaultHeadersPolicy
             "frame-ancestors 'none'",
             "upgrade-insecure-requests"
         );
-
-        return _csp;
     }
 
     public override void ApplyHeaders(HttpContext context, IWebHostEnvironment environment)
@@ -46,7 +39,7 @@ internal sealed class BlazorSecurityHeaders : DefaultHeadersPolicy
         var headers = context.Response.Headers;
 
         headers.CacheControl = "no-store, no-cache, must-revalidate";
-        headers.ContentSecurityPolicy = GetContentSecurityPolicy(context, environment);
+        headers.ContentSecurityPolicy = _csp ??= GetContentSecurityPolicy(context, environment);
 
         headers["Permissions-Policy"] = new PermissionsPolicy
         {
