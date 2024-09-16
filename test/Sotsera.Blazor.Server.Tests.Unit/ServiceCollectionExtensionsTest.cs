@@ -12,7 +12,7 @@ public class ServiceCollectionExtensionsTest
     {
         var serviceCollection = new ServiceCollection();
 
-        Action act = () => serviceCollection.AddSecurityHeaders(true, "SuperSecretName");
+        Action act = () => serviceCollection.AddSecurityHeaders();
 
         act.Should().NotThrow<ArgumentNullException>();
     }
