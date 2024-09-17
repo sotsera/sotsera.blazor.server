@@ -56,7 +56,7 @@ Override the policy on any IEndpointConventionBuilder like, for example, on a gr
 // This endpoint will have the default policy
 app.MapGet("with-default-headers", () => "default headers");
 
-// 👇 Override the security headers for a specific or group of endpoints
+// Override the security headers for a specific or group of endpoints
 var group = app.MapGroup("api").RequireSecurityHeaders(new ApiPolicy());
 
 // This endpoint will have the api policy
@@ -67,17 +67,13 @@ group.MapGet("with-api-headers", () => "api headers");
 Disable the security headers for IEndpointConventionBuilder
 
 ```csharp
-// 👇 This endpoin will have no headers
 group.MapGet("without-headers", () => "without headers").DisableSecurityHeaders();
 ```
 
 Override the policy specifically for Blazor server. The library contains a SHA-256 provider for the **importmap** script added by the `<ImportMap />` component which can be resolved and used by a policy.
 
 ```csharp
-app.MapRazorComponents<App>().AddInteractiveServerRenderMode()
-    // 👇 Override the security header for a Blazor server application
-    // 🎉 The example adds a sha to the CSP for <ImportMap />
-    .RequireSecurityHeaders(new BlazorPolicy());
+app.MapRazorComponents<App>().AddInteractiveServerRenderMode().RequireSecurityHeaders(new BlazorPolicy());
 ```
 
 ### Example policies
@@ -109,13 +105,13 @@ internal class BlazorPolicy : DefaultPolicy
 {
     public override void ApplyHeaders(HttpContext context, IWebHostEnvironment environment)
     {
-        // 👇 retrieve the SHA-256 for the importmap script created by the <ImportMap /> component
+        // retrieve the SHA-256 for the importmap script created by the <ImportMap /> component
         var sha = context.GetRequiredService<IBlazorImportMapDefinitionShaProvider>().GetSha256(context);
 
-        // 👇 append the sha to the allowed sources
+        // append the sha to the allowed sources
         context.Response.Headers.ContentSecurityPolicy = $"script-src-elem {sha}";
 
-        // 👇 disable the camera and geolocation usage
+        // disable the camera and geolocation usage
         context.Response.Headers["Permissions-Policy"] = new PermissionsPolicy
         {
             Camera = "()",
