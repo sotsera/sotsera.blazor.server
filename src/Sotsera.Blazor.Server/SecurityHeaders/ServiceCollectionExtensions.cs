@@ -10,6 +10,9 @@ using Sotsera.Sources.Common.Extensions;
 
 namespace Sotsera.Blazor.Server.SecurityHeaders;
 
+/// <summary>
+/// Provides extension methods for adding security headers services to the service collection.
+/// </summary>
 public static class ServiceCollectionExtensions
 {
     /// <summary>

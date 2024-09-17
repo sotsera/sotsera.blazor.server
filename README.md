@@ -1,6 +1,6 @@
 ![Sotsera.Blazor.Server](icon.png "Sotsera.Blazor.Server")
 
-# sotsera.blazor.Server
+# sotsera.blazor.server
 
 Some Blazor Server extensions
 
