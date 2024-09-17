@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT.
 
 using Microsoft.Extensions.DependencyInjection;
+using Sotsera.Blazor.Server.SecurityHeaders;
 
 namespace Sotsera.Blazor.Server.Tests.Unit;
 
@@ -12,7 +13,7 @@ public class ServiceCollectionExtensionsTest
     {
         var serviceCollection = new ServiceCollection();
 
-        Action act = () => serviceCollection.AddSecurityHeaders(true);
+        Action act = () => serviceCollection.AddSecurityHeaders();
 
         act.Should().NotThrow<ArgumentNullException>();
     }

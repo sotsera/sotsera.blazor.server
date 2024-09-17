@@ -4,12 +4,16 @@
 using System.Net.Mime;
 using System.Text;
 using BlazorWebAppAutoGlobal.Components;
-using Sotsera.Blazor.Server;
-using Sotsera.Blazor.Server.SecurityHeaders.Policies.DefaultPolicies;
+using BlazorWebAppAutoGlobal.Configuration.SecurityHeaders;
+using Sotsera.Blazor.Server.SecurityHeaders;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSecurityHeaders(true);
+builder.Services.AddSecurityHeaders(c =>
+{
+    c.DisableKestrelServerHeader = true;
+    c.AntiforgeryTokenPrefix = "SuperSecretToken";
+});
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
@@ -26,26 +30,23 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseAntiforgery();
 
-app.UseSecurityHeaders(new DefaultSecurityHeadersPolicy());
+app.UseSecurityHeaders(new DefaultHeadersPolicy());
 
 app.MapStaticAssets();
 
 app.MapGroup("api")
-    .AddTestApi()
-    .RequireSecurityHeaders(new DefaultApiSecurityHeadersPolicy());
+    .AddTestApi();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(BlazorWebAppAutoGlobal.Client._Imports).Assembly)
-    .RequireSecurityHeaders(new DefaultBlazorSecurityHeadersPolicy());
+    .RequireSecurityHeaders(new BlazorSecurityHeaders());
 
 app.Run();
 

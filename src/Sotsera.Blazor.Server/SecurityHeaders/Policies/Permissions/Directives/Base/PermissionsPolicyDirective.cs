@@ -5,16 +5,25 @@ using Sotsera.Sources.Common.Extensions;
 
 namespace Sotsera.Blazor.Server.SecurityHeaders.Policies.Permissions.Directives.Base;
 
-public class PermissionsPolicyDirective(string name, string value = "()")
+/// <summary>
+/// Represents a base class for permissions policy directives.
+/// </summary>
+public class PermissionsPolicyDirective(string name, string? value = null)
 {
-    private readonly string _value = value.ThrowIfEmpty();
+    private string? _value = value;
 
+    /// <summary>
+    /// Gets the name of the directive.
+    /// </summary>
     public string Name { get; } = name.ThrowIfEmpty();
 
-    public string Value
+    /// <summary>
+    /// Gets or sets the value of the directive.
+    /// </summary>
+    public string? Value
     {
         get => _value;
-        protected init => _value = value.IsEmpty() ? "()" : value;
+        set => _value = value.IsEmpty() ? null : value;
     }
 }
 
