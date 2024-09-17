@@ -58,18 +58,17 @@ app.MapGet("with-default-headers", () => "default headers");
 
 // Override the security headers for a specific or group of endpoints
 var group = app.MapGroup("api")
-            .RequireSecurityHeaders(new ApiPolicy());
+    .RequireSecurityHeaders(new ApiPolicy());
 
 // This endpoint will have the api policy
 group.MapGet("with-api-headers", () => "api headers");
-
 ```
 
 Disable the security headers for IEndpointConventionBuilder
 
 ```csharp
 group.MapGet("without-headers", () => "without headers")
-      .DisableSecurityHeaders();
+    .DisableSecurityHeaders();
 ```
 
 Override the policy specifically for Blazor server. The library contains a SHA-256 provider for the **importmap** script added by the `<ImportMap />` component which can be resolved and used by a policy.
@@ -109,8 +108,8 @@ internal class BlazorPolicy : DefaultPolicy
     public override void ApplyHeaders(HttpContext context, IWebHostEnvironment environment)
     {
         // retrieve the SHA-256 for the importmap script created by the <ImportMap /> component
-        var sha = context.GetRequiredService<IBlazorImportMapDefinitionShaProvider>()
-            .GetSha256(context);
+        var provider = context.GetRequiredService<IBlazorImportMapDefinitionShaProvider>();
+        var sha = provider.GetSha256(context);
 
         // append the sha to the allowed sources
         context.Response.Headers.ContentSecurityPolicy = $"script-src-elem {sha}";
@@ -123,7 +122,6 @@ internal class BlazorPolicy : DefaultPolicy
         };
     }
 }
-
 ```
 
 ### Thanks
