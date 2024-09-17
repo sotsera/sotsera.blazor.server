@@ -3,4 +3,7 @@
 
 namespace Sotsera.Blazor.Server.SecurityHeaders.Metadata;
 
+/// <summary>
+/// Marker interface for security headers metadata.
+/// </summary>
 public interface ISecurityHeadersMetadata;

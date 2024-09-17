@@ -26,9 +26,7 @@ public class BlazorImportMapDefinitionShaProviderTests
     [Fact]
     public void Test()
     {
-        var provider = new BlazorImportMapDefinitionShaProvider();
-
-        var sha = provider.CalculateSha256(ImportMapDefinition);
+        var sha = BlazorImportMapDefinitionShaProvider.CalculateSha256(ImportMapDefinition);
 
         sha.Should().Be("/UDgMX5fSFf4RPPlYgObQhDUdJN5m3JzenjUXhOGf/U=");
     }

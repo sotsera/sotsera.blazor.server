@@ -128,5 +128,5 @@ internal class BlazorPolicy : DefaultPolicy
 
 ### Thanks
 
-- Andrew Lock ([@andrewlocknet](https://twitter.com/andrewlocknet)) for his library [NetEscapades.AspNetCore.SecurityHeaders](https://github.com/andrewlock/NetEscapades.AspNetCore.SecurityHeaders). I’ve been using his library for years  and, quite frankly, probably you should too 😊
+- Andrew Lock ([@andrewlocknet](https://twitter.com/andrewlocknet)) for [NetEscapades.AspNetCore.SecurityHeaders](https://github.com/andrewlock/NetEscapades.AspNetCore.SecurityHeaders)
 - [IconShock (FreeIcons)](https://www.iconshock.com/freeicons/) for the library [icon](https://www.iconshock.com/freeicons/rack-server-solid) (color: #702AF7)

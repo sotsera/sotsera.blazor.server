@@ -11,12 +11,20 @@ using Sotsera.Sources.Common.Extensions;
 
 namespace Sotsera.Blazor.Server.SecurityHeaders;
 
+/// <summary>
+/// Middleware for applying security headers to HTTP responses.
+/// </summary>
 public class SecurityHeadersMiddleware(RequestDelegate next, ISecurityHeadersPolicy policy, ILogger<SecurityHeadersMiddleware> logger)
 {
     private readonly ISecurityHeadersPolicy _policy = policy.ThrowIfNull();
     private readonly RequestDelegate _next = next.ThrowIfNull();
     private readonly ILogger<SecurityHeadersMiddleware> _logger = logger.ThrowIfNull();
 
+    /// <summary>
+    /// Invokes the middleware to apply security headers to the HTTP context.
+    /// </summary>
+    /// <param name="context">The HTTP context.</param>
+    /// <returns>A task that represents the completion of the middleware execution.</returns>
     public Task Invoke(HttpContext context)
     {
         var endpoint = context.GetEndpoint();
@@ -36,6 +44,11 @@ public class SecurityHeadersMiddleware(RequestDelegate next, ISecurityHeadersPol
         return _next(context);
     }
 
+    /// <summary>
+    /// Delegate method that is called when the response is starting.
+    /// </summary>
+    /// <param name="state">The state object containing the HTTP context and security headers policy.</param>
+    /// <returns>A task that represents the completion of the response starting delegate.</returns>
     private Task OnResponseStartingDelegate(object state)
     {
         var (context, policy) = ((HttpContext, ISecurityHeadersPolicy))state;

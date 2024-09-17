@@ -12,6 +12,13 @@ namespace Sotsera.Blazor.Server.SecurityHeaders;
 
 public static class ServiceCollectionExtensions
 {
+    /// <summary>
+    /// Adds security headers services to the specified service collection.
+    /// </summary>
+    /// <param name="services">The service collection to add the services to.</param>
+    /// <param name="configure">An optional action to configure the security headers options.</param>
+    /// <returns>The service collection with the security headers services added.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="services"/> is null.</exception>
     public static IServiceCollection AddSecurityHeaders(
         this IServiceCollection services,
         Action<SecurityHeadersOptions>? configure = null)

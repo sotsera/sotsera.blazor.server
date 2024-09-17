@@ -28,6 +28,11 @@ public class BlazorImportMapDefinitionShaProvider : IBlazorImportMapDefinitionSh
 {
     private string? _importMapDefinitionSha256;
 
+    /// <summary>
+    /// Retrieves the SHA-256 hash of the import map definition from the given HTTP context.
+    /// </summary>
+    /// <param name="context">The HTTP context containing the import map definition.</param>
+    /// <returns>The SHA-256 hash of the import map definition, or null if the definition is not found.</returns>
     public string? GetSha256(HttpContext context)
     {
         var importMapDefinition = context.GetEndpoint()?.Metadata.GetMetadata<ImportMapDefinition>()?.ToString();
@@ -49,8 +54,7 @@ public class BlazorImportMapDefinitionShaProvider : IBlazorImportMapDefinitionSh
         return sha;
     }
 
-    // ReSharper disable once MemberCanBeMadeStatic.Global
-    public string CalculateSha256(string importMapDefinition)
+    public static string CalculateSha256(string importMapDefinition)
     {
         var sanitized = importMapDefinition.Replace("\r\n", "\n");
         var bytes = Encoding.UTF8.GetBytes(sanitized);

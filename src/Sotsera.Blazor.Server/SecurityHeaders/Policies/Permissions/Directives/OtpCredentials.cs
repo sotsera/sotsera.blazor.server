@@ -5,7 +5,15 @@ using Sotsera.Blazor.Server.SecurityHeaders.Policies.Permissions.Directives.Base
 
 namespace Sotsera.Blazor.Server.SecurityHeaders.Policies.Permissions.Directives;
 
+/// <summary>
+/// Represents the permissions policy directive for the otp-credentials feature.
+/// </summary>
 public class OtpCredentials() : PermissionsPolicyDirective("otp-credentials")
 {
+    /// <summary>
+    /// Implicitly converts a string value to an <see cref="OtpCredentials"/> instance.
+    /// </summary>
+    /// <param name="value">The string value to convert.</param>
+    /// <returns>An <see cref="OtpCredentials"/> instance with the specified value.</returns>
     public static implicit operator OtpCredentials(string value) => new() { Value = value };
 }
