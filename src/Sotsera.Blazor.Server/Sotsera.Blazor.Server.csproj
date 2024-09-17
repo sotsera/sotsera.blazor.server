@@ -1,7 +1,40 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <Version Condition="'$(ContinuousIntegrationBuild)' != 'true'">0.0.0-local</Version>
+    <MinVerSkip Condition="'$(ContinuousIntegrationBuild)' != 'true'">true</MinVerSkip>
+    <MinVerTagPrefix>v</MinVerTagPrefix>
+
+    <Authors>Alessandro Ghidini</Authors>
+    <Company>Sotsera</Company>
+    <Description>Some Blazor Server extensions like Security Headers middleware</Description>
+    <Copyright>Sotsera</Copyright>
+
+    <RepositoryUrl>https://github.com/sotsera/sotsera.blazor.server</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/sotsera/sotsera.blazor.server</PackageProjectUrl>
+    <PackageTags>sotsera;blazor server;security headers;content security policies;csp</PackageTags>
+    <PackageReadmeFile>Readme.md</PackageReadmeFile>
+  </PropertyGroup>
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../../Readme.md;../../icon.png" Pack="true" PackagePath="/" Visible="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MinVer">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>
