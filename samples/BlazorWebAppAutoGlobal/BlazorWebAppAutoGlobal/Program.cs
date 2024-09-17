@@ -3,7 +3,7 @@
 
 using BlazorWebAppAutoGlobal.Components;
 using BlazorWebAppAutoGlobal.Configuration.SecurityHeaders;
-using Sotsera.Blazor.Server;
+using Sotsera.Blazor.Server.SecurityHeaders;
 
 var builder = WebApplication.CreateBuilder(args);
 

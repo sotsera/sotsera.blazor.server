@@ -2,11 +2,10 @@
 // SPDX-License-Identifier: MIT.
 
 using Microsoft.AspNetCore.Builder;
-using Sotsera.Blazor.Server.SecurityHeaders;
 using Sotsera.Blazor.Server.SecurityHeaders.Policies;
 using Sotsera.Sources.Common.Extensions;
 
-namespace Sotsera.Blazor.Server;
+namespace Sotsera.Blazor.Server.SecurityHeaders;
 
 public static class ApplicationBuilderExtensions
 {

@@ -82,7 +82,7 @@ public class PermissionsPolicy
         var builder = new StringBuilder();
         var first = true;
 
-        foreach (var directive in AllDirectives.Where(x=>x.Value.IsNonEmpty()))
+        foreach (var directive in AllDirectives.Where(x => x.Value.IsNonEmpty()))
         {
             if (first)
             {

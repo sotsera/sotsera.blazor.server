@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT.
 
 using Microsoft.Extensions.DependencyInjection;
+using Sotsera.Blazor.Server.SecurityHeaders;
 
 namespace Sotsera.Blazor.Server.Tests.Unit;
 

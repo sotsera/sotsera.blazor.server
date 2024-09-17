@@ -8,11 +8,12 @@ using Sotsera.Blazor.Server.SecurityHeaders.Blazor;
 using Sotsera.Blazor.Server.SecurityHeaders.Configuration;
 using Sotsera.Sources.Common.Extensions;
 
-namespace Sotsera.Blazor.Server;
+namespace Sotsera.Blazor.Server.SecurityHeaders;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddSecurityHeaders(this IServiceCollection services,
+    public static IServiceCollection AddSecurityHeaders(
+        this IServiceCollection services,
         Action<SecurityHeadersOptions>? configure = null)
     {
         services.ThrowIfNull();

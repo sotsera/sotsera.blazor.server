@@ -11,7 +11,8 @@ namespace BlazorWebAppAutoGlobal.Configuration.SecurityHeaders;
 /// </summary>
 public class DefaultHeadersPolicy : ISecurityHeadersPolicy
 {
-    public virtual void ApplyHeaders(HttpContext context, IWebHostEnvironment environment) {
+    public virtual void ApplyHeaders(HttpContext context, IWebHostEnvironment environment)
+    {
         var headers = context.Response.Headers;
 
         headers.Remove(HeaderNames.Server);
@@ -19,7 +20,6 @@ public class DefaultHeadersPolicy : ISecurityHeadersPolicy
         headers.XContentTypeOptions = "nosniff";
         headers.XFrameOptions = "DENY";
         headers["Referrer-Policy"] = "strict-origin-when-cross-origin";
-
         headers["Cross-Origin-Embedder-Policy"] = "require-corp";
         headers["Cross-Origin-Opener-Policy"] = "same-origin";
 
