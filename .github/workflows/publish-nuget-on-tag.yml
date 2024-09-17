@@ -61,15 +61,15 @@ jobs:
       - name: Set up .NET Core (global.json)
         uses: actions/setup-dotnet@v4
 
-      # - name: Publish NuGet packages
-      #   shell: pwsh
-      #   env:
-      #     NUGET_APY_KEY: ${{ secrets.NUGET_APY_KEY }}
-      #   run: |
-      #     Write-Host "Current ref: $env:GITHUB_REF"
-      #     Write-Host "Searching nupkg in folder: ${{ env.ARTIFACTS_FOLDER }}"
-      #     $files = Get-ChildItem "${{ env.ARTIFACTS_FOLDER }}/*" -Include *.nupkg
-      #     foreach($file in $files) {
-      #       Write-Host "Pushing NuGet package: $($file.FullName)"
-      #       & dotnet nuget push "$($file.FullName)" --api-key "$env:NUGET_APY_KEY" --source ${{ env.NUGET_URI }} --force-english-output --skip-duplicate
-      #     }
+      - name: Publish NuGet packages
+        shell: pwsh
+        env:
+          NUGET_APY_KEY: ${{ secrets.NUGET_APY_KEY }}
+        run: |
+          Write-Host "Current ref: $env:GITHUB_REF"
+          Write-Host "Searching nupkg in folder: ${{ env.ARTIFACTS_FOLDER }}"
+          $files = Get-ChildItem "${{ env.ARTIFACTS_FOLDER }}/*" -Include *.nupkg
+          foreach($file in $files) {
+            Write-Host "Pushing NuGet package: $($file.FullName)"
+            & dotnet nuget push "$($file.FullName)" --api-key "$env:NUGET_APY_KEY" --source ${{ env.NUGET_URI }} --force-english-output --skip-duplicate
+          }
