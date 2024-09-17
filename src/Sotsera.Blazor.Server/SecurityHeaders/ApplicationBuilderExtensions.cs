@@ -7,6 +7,9 @@ using Sotsera.Sources.Common.Extensions;
 
 namespace Sotsera.Blazor.Server.SecurityHeaders;
 
+/// <summary>
+/// Provides extension methods for configuring security headers middleware in the application's request pipeline.
+/// </summary>
 public static class ApplicationBuilderExtensions
 {
     /// <summary>

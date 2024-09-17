@@ -8,6 +8,9 @@ using Sotsera.Sources.Common.Extensions;
 
 namespace Sotsera.Blazor.Server.Localization;
 
+/// <summary>
+/// Provides extension methods for configuring request localization in web application.
+/// </summary>
 public static class WebApplicationExtensions
 {
     /// <summary>

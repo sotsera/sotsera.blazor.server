@@ -8,6 +8,9 @@ using Sotsera.Sources.Common.Extensions;
 
 namespace Sotsera.Blazor.Server.SecurityHeaders;
 
+/// <summary>
+/// Provides extension methods for configuring security headers on endpoints.
+/// </summary>
 public static class EndpointConventionBuilderExtensions
 {
     /// <summary>

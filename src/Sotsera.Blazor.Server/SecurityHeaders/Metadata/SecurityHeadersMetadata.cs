@@ -22,8 +22,6 @@ public interface ISecurityHeadersPolicyMetadata : ISecurityHeadersMetadata
 /// </summary>
 public class SecurityHeadersPolicyMetadata(ISecurityHeadersPolicy policy) : ISecurityHeadersPolicyMetadata
 {
-    /// <summary>
-    /// Gets the security headers policy.
-    /// </summary>
+    /// <inheritdoc />
     public ISecurityHeadersPolicy Policy { get; } = policy.ThrowIfNull();
 }

@@ -20,6 +20,9 @@ public interface ISecurityHeadersPolicy
     void ApplyHeaders(HttpContext context, IWebHostEnvironment environment);
 }
 
+/// <summary>
+/// Provides extension methods for the <see cref="HttpContext"/> class.
+/// </summary>
 public static class HttpContextExtensions
 {
     /// <summary>

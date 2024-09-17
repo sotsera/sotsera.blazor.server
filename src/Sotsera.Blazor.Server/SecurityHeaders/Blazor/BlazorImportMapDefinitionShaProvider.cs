@@ -8,8 +8,16 @@ using Microsoft.AspNetCore.Http;
 
 namespace Sotsera.Blazor.Server.SecurityHeaders.Blazor;
 
+/// <summary>
+/// Provides an interface for retrieving the SHA-256 hash of the Blazor import map definition.
+/// </summary>
 public interface IBlazorImportMapDefinitionShaProvider
 {
+    /// <summary>
+    /// Retrieves the SHA-256 hash of the import map definition from the given HTTP context.
+    /// </summary>
+    /// <param name="context">The HTTP context containing the import map definition.</param>
+    /// <returns>The SHA-256 hash of the import map definition, or null if the definition is not found.</returns>
     string? GetSha256(HttpContext context);
 }
 
@@ -28,11 +36,7 @@ public class BlazorImportMapDefinitionShaProvider : IBlazorImportMapDefinitionSh
 {
     private string? _importMapDefinitionSha256;
 
-    /// <summary>
-    /// Retrieves the SHA-256 hash of the import map definition from the given HTTP context.
-    /// </summary>
-    /// <param name="context">The HTTP context containing the import map definition.</param>
-    /// <returns>The SHA-256 hash of the import map definition, or null if the definition is not found.</returns>
+    /// <inheritdoc cref="IBlazorImportMapDefinitionShaProvider"/>
     public string? GetSha256(HttpContext context)
     {
         var importMapDefinition = context.GetEndpoint()?.Metadata.GetMetadata<ImportMapDefinition>()?.ToString();
@@ -54,6 +58,7 @@ public class BlazorImportMapDefinitionShaProvider : IBlazorImportMapDefinitionSh
         return sha;
     }
 
+    /// <inheritdoc cref="IBlazorImportMapDefinitionShaProvider"/>
     public static string CalculateSha256(string importMapDefinition)
     {
         var sanitized = importMapDefinition.Replace("\r\n", "\n");
