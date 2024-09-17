@@ -1,6 +1,8 @@
 // Copyright (c) Alessandro Ghidini. All rights reserved.
 // SPDX-License-Identifier: MIT.
 
+using System.Net.Mime;
+using System.Text;
 using BlazorWebAppAutoGlobal.Components;
 using BlazorWebAppAutoGlobal.Configuration.SecurityHeaders;
 using Sotsera.Blazor.Server.SecurityHeaders;
@@ -37,6 +39,9 @@ app.UseSecurityHeaders(new DefaultHeadersPolicy());
 
 app.MapStaticAssets();
 
+app.MapGroup("api")
+    .AddTestApi();
+
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
@@ -48,3 +53,23 @@ app.Run();
 // ReSharper disable once ClassNeverInstantiated.Global
 public partial class Program;
 
+internal static class TestApi
+{
+    public static RouteGroupBuilder AddTestApi(this RouteGroupBuilder builder)
+    {
+        builder.MapGet("/text", () => "Ciao!");
+
+        builder.MapGet("/json", () => TypedResults.Ok(new { Message = "Ciao!" }));
+
+        builder.MapGet("/json-no-headers", () => TypedResults.Ok(new { Message = "Ciao!" }))
+            .DisableSecurityHeaders();
+
+        builder.MapGet("/html", () =>
+        {
+            const string content = "<html><body><h1>Ciao!</h1></body></html>";
+            return TypedResults.Content(content, MediaTypeNames.Text.Html, Encoding.UTF8);
+        });
+
+        return builder;
+    }
+}
