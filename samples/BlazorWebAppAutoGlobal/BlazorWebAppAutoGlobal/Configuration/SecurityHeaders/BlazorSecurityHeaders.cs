@@ -17,7 +17,7 @@ internal sealed class BlazorSecurityHeaders : DefaultHeadersPolicy
 
         var developmentConnectSrc = environment.IsDevelopment()
             ? "http://localhost:* ws://localhost:* wss://localhost:*"
-            : "";
+            : string.Empty;
 
         return string.Join(';',
             "default-src 'none'",
@@ -39,6 +39,7 @@ internal sealed class BlazorSecurityHeaders : DefaultHeadersPolicy
         var headers = context.Response.Headers;
 
         headers.CacheControl = "no-store, no-cache, must-revalidate";
+
         headers.ContentSecurityPolicy = _csp ??= GetContentSecurityPolicy(context, environment);
 
         headers["Permissions-Policy"] = new PermissionsPolicy

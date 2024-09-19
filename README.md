@@ -5,11 +5,12 @@
 Some Blazor Server extensions
 
 [![GitHub license](https://img.shields.io/github/license/sotsera/sotsera.blazor.server?style=flat-square)](LICENSE)
-[![Target](https://img.shields.io/static/v1?label=target&message=net9.0&color=512bd4&logo=.net&style=flat-square)](https://dotnet.microsoft.com/en-us/)
-[![GitHub last commit](https://img.shields.io/github/last-commit/sotsera/sotsera.blazor.server?display_timestamp=committer&style=flat-square)](https://github.com/sotsera/sotsera.blazor.server)
+![Target](https://img.shields.io/static/v1?label=target&message=net9.0&color=512bd4&logo=.net&style=flat-square)
+![GitHub last commit](https://img.shields.io/github/last-commit/sotsera/sotsera.blazor.server?display_timestamp=committer&style=flat-square)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/sotsera/sotsera.blazor.server/publish-nuget-on-tag.yml?style=flat-square)
 [![NuGet](https://img.shields.io/nuget/v/sotsera.blazor.server.svg?style=flat-square)](https://www.nuget.org/packages/sotsera.blazor.server/)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/sotsera.blazor.server?style=flat-square)](https://www.nuget.org/packages/sotsera.blazor.server/)
-[![GitHub Repo stars](https://img.shields.io/github/stars/sotsera/sotsera.blazor.server?style=flat-square)](https://github.com/sotsera/sotsera.blazor.server)
+
 
 ## Security headers
 
@@ -64,14 +65,14 @@ var group = app.MapGroup("api")
 group.MapGet("with-api-headers", () => "api headers");
 ```
 
-Disable the security headers for IEndpointConventionBuilder
+Disable the security headers for an IEndpointConventionBuilder
 
 ```csharp
 group.MapGet("without-headers", () => "without headers")
     .DisableSecurityHeaders();
 ```
 
-Override the policy specifically for Blazor server. The library contains a SHA-256 provider for the **importmap** script added by the `<ImportMap />` component which can be resolved and used by a policy.
+Override the policy specifically for **Blazor server** with interactivity **auto** or **web assembly**. The library contains a SHA-256 provider for the **importmap** script added by the `<ImportMap />` component which can be resolved by a policy in order to include the sha in the Content Security Policy (CSP).
 
 ```csharp
 app.MapRazorComponents<App>().AddInteractiveServerRenderMode()

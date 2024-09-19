@@ -6,6 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
+    <!--<AccelerateBuildsInVisualStudio>false</AccelerateBuildsInVisualStudio>-->
+
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
