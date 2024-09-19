@@ -9,5 +9,8 @@ internal static partial class SecurityHeadersLoggerExtensions
 {
     [LoggerMessage(1, LogLevel.Warning, "Failed to apply SecurityHeaders Response headers.", EventName = "FailedToSetHeaders")]
     public static partial void FailedToSetHeaders(this ILogger logger, Exception? exception);
+
+    [LoggerMessage(2, LogLevel.Warning, "ImportMapDefinition not found", EventName = "ImportMapDefinitionNotFound")]
+    public static partial void ImportMapDefinitionNotFound(this ILogger logger);
 }
 

@@ -5,6 +5,8 @@ using System.Security.Cryptography;
 using System.Text;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+using Sotsera.Sources.Common.Extensions;
 
 namespace Sotsera.Blazor.Server.SecurityHeaders.Blazor;
 
@@ -32,26 +34,29 @@ public interface IBlazorImportMapDefinitionShaProvider
 ///     --> IEndpointConventionBuilder.OnBeforeCreateEndpoints += ResourceCollectionConvention.OnBeforeCreateEndpoints <br/>
 ///     --> IEndpointConventionBuilder.Add(ResourceCollectionConvention.ApplyConvention) <br/>
 /// </remarks>
-public class BlazorImportMapDefinitionShaProvider : IBlazorImportMapDefinitionShaProvider
+public class BlazorImportMapDefinitionShaProvider(ILogger<BlazorImportMapDefinitionShaProvider> logger)
+    : IBlazorImportMapDefinitionShaProvider
 {
+    private readonly ILogger<BlazorImportMapDefinitionShaProvider> _logger = logger.ThrowIfNull();
     private string? _importMapDefinitionSha256;
 
     /// <inheritdoc cref="IBlazorImportMapDefinitionShaProvider"/>
     public string? GetSha256(HttpContext context)
     {
-        var importMapDefinition = context.GetEndpoint()?.Metadata.GetMetadata<ImportMapDefinition>()?.ToString();
-
-        if (importMapDefinition == null)
-        {
-            return null;
-        }
-
         if (_importMapDefinitionSha256 is not null)
         {
             return _importMapDefinitionSha256;
         }
 
-        var sha = CalculateSha256(importMapDefinition);
+        var importMapDefinition = context.GetEndpoint()?.Metadata.GetMetadata<ImportMapDefinition>();
+
+        if (importMapDefinition == null)
+        {
+            _logger.ImportMapDefinitionNotFound();
+            return null;
+        }
+
+        var sha = CalculateSha256(importMapDefinition.ToString());
 
         _importMapDefinitionSha256 = sha;
 
